@@ -5,7 +5,8 @@ services:
     nginx:
 
       build: requirements/nginx/
-      #ports:
+      ports:
+        - 8080:80
       # - 9000:9000
       # - 443:80
       networks: 
@@ -22,11 +23,10 @@ services:
       networks: 
         - inception_network
       volumes:
-       - wp_db:/var/lib/mysql
+       - wp_db:/var/lib/mysql/
       restart: always
 
     wordpress:
-
       depends_on: 
         - mariadb
       build: requirements/nginx/
@@ -35,24 +35,25 @@ services:
       networks: 
         - inception_network
       volumes:
-       - wp_files:/var/www/html
+       - wp_files:/var/www/html/
       restart: always
 
 networks:
     inception_network:
 
+#permissions handled by docker to prevent problems
 volumes:
   wp_db:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /DB
+      device: /Users/mehdi/42/Cursus_42/wordpress/DB
   wp_files:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /wordpress
-      
+      device: /Users/mehdi/42/Cursus_42/wordpress/wordpress
+
 
