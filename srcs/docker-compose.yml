@@ -5,6 +5,8 @@ services:
     nginx:
 
       build: requirements/nginx/
+      #image: nginx_img
+      container_name: nginx
       ports:
         - 8080:80
       # - 9000:9000
@@ -18,6 +20,8 @@ services:
       depends_on: 
         - nginx
       build: requirements/nginx/
+      #image: mariadb_img
+      container_name: mariadb
       #ports:
       #  - 3306:3306
       networks: 
@@ -30,6 +34,8 @@ services:
       depends_on: 
         - mariadb
       build: requirements/nginx/
+      #image: wordpress_img
+      container_name: wordpress-fpm
       ports:
         - 9000:9000
       networks: 

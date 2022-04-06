@@ -1,6 +1,8 @@
 FROM debian:buster
 
 RUN apt-get update && \
-apt-get install wordpress && \
-apt-get install php-fpm && \
-apt-get install vim
+apt-get install wordpress -y && \
+apt-get install php-fpm -y && \
+apt-get install vim -y
+
+STOPSIGNAL SIGTERM
