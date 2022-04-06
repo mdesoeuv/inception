@@ -31,7 +31,7 @@ services:
         - mariadb
       build: requirements/nginx/
       ports:
-        - 8000:80
+        - 9000:9000
       networks: 
         - inception_network
       volumes:
