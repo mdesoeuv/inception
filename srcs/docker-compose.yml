@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+
+    nginx:
+
+      build: requirements/nginx/
+      #ports:
+      # - 9000:9000
+      # - 443:80
+      networks: 
+        - inception_network
+      restart: always
+
+    mariadb:
+
+      depends_on: 
+        - nginx
+      build: requirements/nginx/
+      #ports:
+      #  - 3306:3306
+      networks: 
+        - inception_network
+      volumes:
+       - wp_db:/var/lib/mysql
+      restart: always
+
+    wordpress:
+
+      depends_on: 
+        - mariadb
+      build: requirements/nginx/
+      ports:
+        - 8000:80
+      networks: 
+        - inception_network
+      volumes:
+       - wp_files:/var/www/html
+      restart: always
+
+networks:
+    inception_network:
+
+volumes:
+  wp_db:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /DB
+  wp_files:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /wordpress
+      
+
