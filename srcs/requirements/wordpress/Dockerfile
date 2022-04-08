@@ -6,5 +6,7 @@ apt-get install php-fpm -y && \
 apt-get install php-mysql -y && \
 apt-get install vim -y
 
-CMD ["bash"]
+COPY tools/startup.sh /
+
+CMD ["/bin/bash","/startup.sh"]
 #STOPSIGNAL SIGTERM
