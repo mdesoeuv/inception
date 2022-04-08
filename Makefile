@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/08 10:01:27 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/08 10:49:01 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ clean	:
 
 fclean	:	clean
 			docker image rm -f srcs_mariadb srcs_nginx srcs_wordpress
+			rm -rf /Users/mdesoeuv/wordpress/DB
+			rm -rf /Users/mdesoeuv/wordpress/wordpress
 #docker image rm -f mariadb_img nginx_img wordpress_img
 			
 re		:	fclean all
