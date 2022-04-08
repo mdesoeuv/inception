@@ -1,11 +1,8 @@
 version: "3"
-
 services:
 
     nginx:
-
       build: requirements/nginx/
-      #image: nginx_img
       container_name: nginx
       ports:
         - 8080:80
@@ -16,11 +13,9 @@ services:
       restart: always
 
     mariadb:
-
       depends_on: 
         - nginx
-      build: requirements/nginx/
-      #image: mariadb_img
+      build: requirements/mariadb/
       container_name: mariadb
       #ports:
       #  - 3306:3306
@@ -33,8 +28,7 @@ services:
     wordpress:
       depends_on: 
         - mariadb
-      build: requirements/nginx/
-      #image: wordpress_img
+      build: requirements/wordpress/
       container_name: wordpress-fpm
       ports:
         - 9000:9000
@@ -54,12 +48,10 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/mehdi/42/Cursus_42/wordpress/DB
+      device: /Users/mdesoeuv/wordpress/DB
   wp_files:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/mehdi/42/Cursus_42/wordpress/wordpress
-
-
+      device: /Users/mdesoeuv/wordpress/wordpress
