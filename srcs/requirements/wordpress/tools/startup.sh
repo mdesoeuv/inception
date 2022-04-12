@@ -1,3 +1,3 @@
 #!/bin/bash
-php-fpm -F -R
-bash
+service php7.3-fpm start
+

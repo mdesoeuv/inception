@@ -6,6 +6,7 @@ services:
       container_name: nginx
 #tty : true makes container permanent with interactive tty
       tty: true
+      init: true
       ports:
         - 8080:80
         - 9000:9000
@@ -13,6 +14,7 @@ services:
       networks: 
         - inception_network
       restart: always
+      env_file: .env
 
     mariadb:
       depends_on: 
@@ -20,6 +22,7 @@ services:
       build: requirements/mariadb/
       container_name: mariadb
       tty: true
+      init: true
       #ports:
       #  - 3306:3306
       networks: 
@@ -27,6 +30,7 @@ services:
       volumes:
        - wp_db:/var/lib/mysql/
       restart: always
+      env_file: .env
 
     wordpress:
       depends_on: 
@@ -34,6 +38,7 @@ services:
       build: requirements/wordpress/
       container_name: wordpress-fpm
       tty: true
+      init: true
       #ports:
       #  - 9000:9000
       networks: 
@@ -41,6 +46,7 @@ services:
       #volumes:
       # - wp_files:
       restart: always
+      env_file: .env
 
 networks:
     inception_network:
