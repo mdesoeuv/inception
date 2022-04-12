@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/12 18:58:25 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/12 19:16:19 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ fclean	:	clean
 			docker image rm -f srcs_mariadb srcs_nginx srcs_wordpress
 			rm -rf /Users/$(USER)/wordpress/DB
 			rm -rf /Users/$(USER)/wordpress/wordpress
-			docker volume prune
+			docker volume prune --force
 			docker system prune --force
 			
 re		:	fclean all
