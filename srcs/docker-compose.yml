@@ -8,7 +8,7 @@ services:
       tty: true
       init: true
       ports:
-        - 8080:80
+        - 8000:80
         - 9000:9000
       # - 443:80
       networks: 
@@ -18,7 +18,7 @@ services:
 
     mariadb:
       depends_on: 
-        - nginx
+        - wordpress
       build: requirements/mariadb/
       container_name: mariadb
       tty: true
@@ -28,23 +28,21 @@ services:
       networks: 
         - inception_network
       volumes:
-       - wp_db:/var/lib/mysql/
+       - wp_db:/var/lib/mysql
       restart: always
       env_file: .env
 
     wordpress:
-      depends_on: 
-        - mariadb
       build: requirements/wordpress/
       container_name: wordpress-fpm
       tty: true
       init: true
-      #ports:
-      #  - 9000:9000
+      ports:
+        - 8080:9000
       networks: 
         - inception_network
-      #volumes:
-      # - wp_files:
+      volumes:
+       - wp_files:/var/www/html
       restart: always
       env_file: .env
 
@@ -54,14 +52,16 @@ networks:
 #permissions handled by docker to prevent problems
 volumes:
   wp_db:
+    name: wp_db
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/mdesoeuv/wordpress/DB
+      device: /Users/$USER/wordpress/DB
   wp_files:
+    name: wp-files
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/mdesoeuv/wordpress/wordpress
+      device: /Users/$USER/wordpress/wordpress

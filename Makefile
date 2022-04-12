@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/08 10:49:01 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/12 18:58:25 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ NAME := Inception
 all :	$(NAME)
 
 $(NAME) :
-			mkdir -p /Users/mdesoeuv/wordpress/DB
-			mkdir -p /Users/mdesoeuv/wordpress/wordpress
-			docker-compose -f srcs/docker-compose.yml up -d
+			mkdir -p /Users/$(USER)/wordpress/DB
+			mkdir -p /Users/$(USER)/wordpress/wordpress
+			chmod 777 /Users/$(USER)/wordpress
+			docker-compose -f srcs/docker-compose.yml up -d --build
 
 start	:	
 			docker-compose -f srcs/docker-compose.yml start
@@ -27,13 +28,15 @@ stop	:
 
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down
-			docker volume rm -f srcs_wp_db srcs_wp_files
+			docker volume rm -f wp_db
+			docker volume rm -f wp_files
 
 fclean	:	clean
 			docker image rm -f srcs_mariadb srcs_nginx srcs_wordpress
-			rm -rf /Users/mdesoeuv/wordpress/DB
-			rm -rf /Users/mdesoeuv/wordpress/wordpress
-#docker image rm -f mariadb_img nginx_img wordpress_img
+			rm -rf /Users/$(USER)/wordpress/DB
+			rm -rf /Users/$(USER)/wordpress/wordpress
+			docker volume prune
+			docker system prune --force
 			
 re		:	fclean all
 
