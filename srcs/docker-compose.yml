@@ -9,12 +9,16 @@ services:
       init: true
       ports:
         - 8000:80
-        - 9000:9000
-      # - 443:80
+      # - 9000:9000
+      # - 443:443
       networks: 
         - inception_network
+      volumes:
+        - wp_files:/var/www/html
       restart: always
       env_file: .env
+      links:
+        - wordpress
 
     mariadb:
       depends_on: 
@@ -38,7 +42,7 @@ services:
       tty: true
       init: true
       ports:
-        - 8080:9000
+        - 9000:9000
       networks: 
         - inception_network
       volumes:

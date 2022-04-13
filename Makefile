@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/12 19:16:19 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/13 09:29:13 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ start	:
 stop	:	
 			docker-compose -f srcs/docker-compose.yml stop
 
+restart	:	stop
+			docker-compose -f srcs/docker-compose.yml up -d --build
+
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down
 			docker volume rm -f wp_db
@@ -40,4 +43,4 @@ fclean	:	clean
 			
 re		:	fclean all
 
-.PHONY	: clean fclean all re start stop
+.PHONY	: clean fclean all re start stop restart
