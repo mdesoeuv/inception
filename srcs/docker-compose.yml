@@ -21,8 +21,6 @@ services:
         - wordpress
 
     mariadb:
-      depends_on: 
-        - wordpress
       build: requirements/mariadb/
       container_name: mariadb
       tty: true
@@ -37,6 +35,8 @@ services:
       env_file: .env
 
     wordpress:
+      depends_on:
+        - mariadb
       build: requirements/wordpress/
       container_name: wordpress-fpm
       tty: true
@@ -49,6 +49,8 @@ services:
        - wp_files:/var/www/html
       restart: always
       env_file: .env
+      links:
+        - mariadb
 
 networks:
     inception_network:
