@@ -3,7 +3,7 @@ services:
 
     nginx:
       build: requirements/nginx/
-      container_name: nginx
+      container_name: nginx_c
 #tty : true makes container permanent with interactive tty
       tty: true
       init: true
@@ -22,11 +22,11 @@ services:
 
     mariadb:
       build: requirements/mariadb/
-      container_name: mariadb
+      container_name: mariadb_c
       tty: true
       init: true
-      #ports:
-      #  - 3306:3306
+      ports:
+        - 3306:3306
       networks: 
         - inception_network
       volumes:
