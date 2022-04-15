@@ -17,4 +17,3 @@ else
 	chmod 775 uploads/
 fi
 service php7.3-fpm start
-bash
