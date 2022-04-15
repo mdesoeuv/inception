@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
 
     nginx:
@@ -21,10 +21,17 @@ services:
         - wordpress
 
     mariadb:
-      build: requirements/mariadb/
+      build: 
+        context: requirements/mariadb/
+        args:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
       container_name: mariadb
       tty: true
       init: true
+      #command: --lower_case_table_names=2
       #ports:
       #  - 3306:3306
       networks: 
@@ -37,10 +44,19 @@ services:
     wordpress:
       depends_on:
         - mariadb
-      build: requirements/wordpress/
+      build:
+        context: requirements/wordpress/
+        args:
+        - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+        - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+        - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+        - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+        - WORDPRESS_ADMIN=${WORDPRESS_ADMIN}
+        - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
       container_name: wordpress-fpm
       tty: true
       init: true
+      
       ports:
         - 9000:9000
       networks: 
