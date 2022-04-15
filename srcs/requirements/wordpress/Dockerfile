@@ -26,6 +26,7 @@ COPY tools/www.conf /etc/php/7.3/fpm/pool.d/
 RUN chmod +x /startup.sh
 RUN ./startup.sh
 
-EXPOSE 9000
+#EXPOSE 9000
+#CMD ./startup.sh
 ENTRYPOINT ["./usr/sbin/php-fpm7.3", "-F"]
 #STOPSIGNAL SIGTERM
