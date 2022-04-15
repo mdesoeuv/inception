@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/14 11:42:35 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/15 14:36:59 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ start	:
 stop	:	
 			docker-compose -f srcs/docker-compose.yml stop
 
-restart	:	stop
+restart	:	
+			docker-compose -f srcs/docker-compose.yml down
 			docker-compose -f srcs/docker-compose.yml up -d --build
 
 clean	:	

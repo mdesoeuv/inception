@@ -14,7 +14,6 @@ ARG MYSQL_DATABASE
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY tools/startup.sh /
 RUN chmod +x /startup.sh
-
 RUN ./startup.sh
 
 ENTRYPOINT [ "mysqld" ]

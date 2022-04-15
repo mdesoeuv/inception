@@ -1,7 +1,7 @@
 #!/bin/bash
-if /usr/local/bin/wp ;
+if test -f /var/www/html/wordpress/wp-config.php ;
 then
-	echo "wp-cli installed"
+	echo "wordpress already setup"
 else
 	wget -c https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar

@@ -3,16 +3,16 @@ services:
 
     nginx:
       depends_on:
-        - mariadb
+        - wordpress
       build: requirements/nginx/
       container_name: nginx
 #tty : true makes container permanent with interactive tty
       tty: true
       init: true
       ports:
-        - 8000:80
+      # - 8000:80
       # - 9000:9000
-      # - 443:443
+        - 443:443
       networks: 
         - inception_network
       volumes:
@@ -33,7 +33,7 @@ services:
       init: true
       #command: --lower_case_table_names=2
       #ports:
-      #  - 3306:3306
+      # - 3306:3306
       networks: 
         - inception_network
       volumes:
@@ -57,8 +57,8 @@ services:
       tty: true
       init: true
       
-      ports:
-        - 9000:9000
+      #ports:
+      # - 9000:9000
       networks: 
         - inception_network
       volumes:
