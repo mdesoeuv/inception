@@ -10,7 +10,8 @@ ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 ARG MYSQL_DATABASE
 
-COPY conf/my.cnf /etc/mysql/
+#COPY conf/my.cnf /etc/mysql/
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY tools/startup.sh /
 RUN chmod +x /startup.sh
 
