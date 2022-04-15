@@ -2,6 +2,8 @@ version: '3'
 services:
 
     nginx:
+      depends_on:
+        - mariadb
       build: requirements/nginx/
       container_name: nginx
 #tty : true makes container permanent with interactive tty
