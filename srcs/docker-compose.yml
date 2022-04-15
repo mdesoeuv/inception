@@ -17,8 +17,6 @@ services:
         - wp_files:/var/www/html
       restart: always
       env_file: .env
-      links:
-        - wordpress
 
     mariadb:
       build: 
@@ -32,8 +30,8 @@ services:
       tty: true
       init: true
       #command: --lower_case_table_names=2
-      ports:
-        - 3306:3306
+      #ports:
+      #  - 3306:3306
       networks: 
         - inception_network
       volumes:
@@ -65,8 +63,6 @@ services:
        - wp_files:/var/www/html
       restart: always
       env_file: .env
-      links:
-        - mariadb
 
 networks:
     inception_network:

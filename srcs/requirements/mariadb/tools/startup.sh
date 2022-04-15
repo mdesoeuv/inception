@@ -4,7 +4,6 @@
 #then
 #	echo "mariadb installed"
 #fi
-#mysql_install_db
 service mysql start
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password;"
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
