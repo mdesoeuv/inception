@@ -31,7 +31,7 @@ services:
       container_name: mariadb
       tty: true
       init: true
-      #command: --lower_case_table_names=2
+      command: --lower_case_table_names=2
       #ports:
       # - 3306:3306
       networks: 
