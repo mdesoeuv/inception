@@ -21,13 +21,9 @@ chown -R www-data:www-data /var/www/html/
 COPY tools/startup.sh /
 COPY tools/php.ini /etc/php/7.3/fpm/
 COPY tools/www.conf /etc/php/7.3/fpm/pool.d/
-#COPY tools/wp-config.php /var/www/html/wordpress/
 
 RUN chmod +x /startup.sh
-#RUN ./startup.sh
 
-#EXPOSE 9000
-#CMD ./startup.sh
-ENTRYPOINT ["/bin/bash", "./startup.sh"]
+CMD ["/startup.sh"]
 #ENTRYPOINT ["./usr/sbin/php-fpm7.3", "-F"]
-#STOPSIGNAL SIGTERM
+

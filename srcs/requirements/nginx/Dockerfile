@@ -16,5 +16,7 @@ COPY tools/startup.sh /
 RUN chmod +x /startup.sh
 RUN ./startup.sh
 
-#STOPSIGNAL SIGTERM
+#nginx stops with sigquit instead of sigterm
+STOPSIGNAL SIGQUIT
+
 CMD ["nginx", "-g", "daemon off;"]

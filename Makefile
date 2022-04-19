@@ -6,17 +6,19 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/19 11:43:40 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/19 16:03:58 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := Inception
 
+DOMAIN_NAME := mdesoeuv.42.fr
+
 all :	$(NAME)
 
 $(NAME) :
-			mkdir -p /Users/$(USER)/wordpress/DB
-			mkdir -p /Users/$(USER)/wordpress/wordpress
+			mkdir -p /Users/$(USER)/data/DB
+			mkdir -p /Users/$(USER)/data/wordpress
 			docker-compose -f srcs/docker-compose.yml up -d --build
 
 start	:	
@@ -37,13 +39,11 @@ restart	:
 
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down --volumes
-			rm -rf /Users/$(USER)/wordpress/DB
-			rm -rf /Users/$(USER)/wordpress/wordpress
+			rm -rf /Users/$(USER)/data/DB
+			rm -rf /Users/$(USER)/data/wordpress
 
 fclean	:	clean
-			docker image rm -f srcs_mariadb srcs_nginx srcs_wordpress
-			rm -rf /Users/$(USER)/wordpress/DB
-			rm -rf /Users/$(USER)/wordpress/wordpress
+			docker image rm -f mariadb nginx wordpress
 
 logs	:
 			docker-compose -f srcs/docker-compose.yml logs

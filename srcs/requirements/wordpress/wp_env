@@ -1,0 +1,8 @@
+DOMAIN_NAME=mdesoeuv.42.fr
+WP_ADMIN_EMAIL=mdesoeuv@student.42lyon.fr
+WORDPRESS_DB_HOST=mariadb:3306
+WORDPRESS_DB_USER=mdesoeuv
+WORDPRESS_DB_PASSWORD=myloginpass
+WORDPRESS_DB_NAME=wordpressDB
+WORDPRESS_ADMIN=mdesoeuv42
+WORDPRESS_ADMIN_PASSWORD=wpadminpass

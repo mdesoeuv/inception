@@ -16,6 +16,7 @@ else
 	# mv wp-config-sample.php wp-config.php
 	chmod 644 wp-config.php
 	wp core install --url=$DOMAIN_NAME --title="mdesoeuv inception" --admin_name=$WORDPRESS_ADMIN --admin_password=$WORDPRESS_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root
+	wp user create evaluator evaluator@example.com --role=author --user_pass=temp_pass --allow-root
 	cd wp-content
 	mkdir -p uploads
 	chgrp www-data uploads/
