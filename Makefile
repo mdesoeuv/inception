@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/15 21:26:54 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/19 11:43:40 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ all :	$(NAME)
 $(NAME) :
 			mkdir -p /Users/$(USER)/wordpress/DB
 			mkdir -p /Users/$(USER)/wordpress/wordpress
-			chmod 777 /Users/$(USER)/wordpress
 			docker-compose -f srcs/docker-compose.yml up -d --build
 
 start	:	
@@ -33,8 +32,8 @@ up		:
 			docker-compose -f srcs/docker-compose.yml up -d
 
 restart	:	
+			docker-compose -f srcs/docker-compose.yml down --volumes
 			docker-compose -f srcs/docker-compose.yml up -d --build
-			docker-compose -f srcs/docker-compose.yml down --volume
 
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down --volumes
@@ -46,10 +45,13 @@ fclean	:	clean
 			rm -rf /Users/$(USER)/wordpress/DB
 			rm -rf /Users/$(USER)/wordpress/wordpress
 
+logs	:
+			docker-compose -f srcs/docker-compose.yml logs
+
 prune	:
 			docker volume prune --force
 			docker system prune --force
 			
 re		:	fclean all
 
-.PHONY	: clean fclean all re start stop restart prune up down
+.PHONY	: clean fclean all re start stop restart prune up down logs

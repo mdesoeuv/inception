@@ -24,9 +24,10 @@ COPY tools/www.conf /etc/php/7.3/fpm/pool.d/
 #COPY tools/wp-config.php /var/www/html/wordpress/
 
 RUN chmod +x /startup.sh
-RUN ./startup.sh
+#RUN ./startup.sh
 
 #EXPOSE 9000
 #CMD ./startup.sh
-ENTRYPOINT ["./usr/sbin/php-fpm7.3", "-F"]
+ENTRYPOINT ["/bin/bash", "./startup.sh"]
+#ENTRYPOINT ["./usr/sbin/php-fpm7.3", "-F"]
 #STOPSIGNAL SIGTERM
