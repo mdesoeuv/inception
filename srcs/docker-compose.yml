@@ -28,7 +28,13 @@ services:
       container_name: mariadb
       #tty: true
       init: true
+<<<<<<< HEAD
       command: --lower_case_table_names=2
+=======
+      #command: --lower_case_table_names=2
+      #ports:
+      # - 3306:3306
+>>>>>>> 3f63af5c0b9ca2b9116b84574d29889494c41fac
       networks: 
         - inception_network
       volumes:

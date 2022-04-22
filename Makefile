@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/15 14:36:59 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/15 21:26:54 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,15 @@ start	:
 stop	:	
 			docker-compose -f srcs/docker-compose.yml stop
 
-restart	:	
+down	:
 			docker-compose -f srcs/docker-compose.yml down
+			
+up		:
+			docker-compose -f srcs/docker-compose.yml up -d
+
+restart	:	
 			docker-compose -f srcs/docker-compose.yml up -d --build
+			docker-compose -f srcs/docker-compose.yml down --volume
 
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down --volumes
@@ -46,4 +52,4 @@ prune	:
 			
 re		:	fclean all
 
-.PHONY	: clean fclean all re start stop restart prune
+.PHONY	: clean fclean all re start stop restart prune up down
