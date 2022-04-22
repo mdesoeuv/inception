@@ -6,12 +6,9 @@ services:
         - wordpress
       build: requirements/nginx/
       container_name: nginx
-#tty : true makes container permanent with interactive tty
-      tty: true
+      #tty: true
       init: true
       ports:
-      # - 8000:80
-      # - 9000:9000
         - 443:443
       networks: 
         - inception_network
@@ -29,11 +26,9 @@ services:
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         - MYSQL_DATABASE=${MYSQL_DATABASE}
       container_name: mariadb
-      tty: true
+      #tty: true
       init: true
       command: --lower_case_table_names=2
-      #ports:
-      # - 3306:3306
       networks: 
         - inception_network
       volumes:
@@ -54,11 +49,9 @@ services:
         - WORDPRESS_ADMIN=${WORDPRESS_ADMIN}
         - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
       container_name: wordpress-fpm
-      tty: true
+      #tty: true
       init: true
       
-      #ports:
-      # - 9000:9000
       networks: 
         - inception_network
       volumes:
@@ -69,7 +62,6 @@ services:
 networks:
     inception_network:
 
-#permissions handled by docker to prevent problems
 volumes:
   wp_db:
     name: wp_db
