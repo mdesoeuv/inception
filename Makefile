@@ -6,7 +6,7 @@
 #    By: mdesoeuv <mdesoeuv@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 11:49:57 by mdesoeuv          #+#    #+#              #
-#    Updated: 2022/04/15 21:26:54 by mdesoeuv         ###   ########lyon.fr    #
+#    Updated: 2022/04/22 09:53:13 by mdesoeuv         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,8 @@ NAME := Inception
 all :	$(NAME)
 
 $(NAME) :
-			mkdir -p /Users/$(USER)/wordpress/DB
-			mkdir -p /Users/$(USER)/wordpress/wordpress
-			chmod 777 /Users/$(USER)/wordpress
+			mkdir -p /home/$(USER)/data/DB
+			mkdir -p /home/$(USER)/data/wordpress
 			docker-compose -f srcs/docker-compose.yml up -d --build
 
 start	:	
@@ -38,13 +37,13 @@ restart	:
 
 clean	:	
 			docker-compose -f srcs/docker-compose.yml down --volumes
-			rm -rf /Users/$(USER)/wordpress/DB
-			rm -rf /Users/$(USER)/wordpress/wordpress
+			rm -rf /home/$(USER)/data/DB
+			rm -rf /home/$(USER)/data/wordpress
 
 fclean	:	clean
 			docker image rm -f srcs_mariadb srcs_nginx srcs_wordpress
-			rm -rf /Users/$(USER)/wordpress/DB
-			rm -rf /Users/$(USER)/wordpress/wordpress
+			rm -rf /home/$(USER)/data/DB
+			rm -rf /home/$(USER)/data/wordpress
 
 prune	:
 			docker volume prune --force
