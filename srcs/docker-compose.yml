@@ -15,7 +15,6 @@ services:
       volumes:
         - wp_files:/var/www/html
       restart: always
-      #env_file: .env
 
     mariadb:
       build: 
@@ -33,7 +32,6 @@ services:
       volumes:
        - wp_db:/var/lib/mysql
       restart: always
-      #env_file: .env
 
     wordpress:
       depends_on:
@@ -50,7 +48,6 @@ services:
       image: wordpress
       container_name: wordpress
       init: true
-      
       networks: 
         - inception_network
       volumes:
@@ -68,13 +65,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/$USER/data/DB
+      device: /home/$USER/data/DB
   wp_files:
     name: wp_files
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/$USER/data/wordpress
+      device: /home/$USER/data/wordpress
 
 #init: true => Run an init inside the container that forwards signals and reaps processes
