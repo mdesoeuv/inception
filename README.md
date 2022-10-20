@@ -1,4 +1,4 @@
-# inception_github
+# inception
 
 Inception is a project from 42 School common core where you have to setup a working wordpress website fully installed and configured, without using any premade images from Docker Hub
 
